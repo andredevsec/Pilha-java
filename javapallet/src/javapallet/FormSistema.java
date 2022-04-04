@@ -1,7 +1,9 @@
 
+
 package javapallet;
 
 import java.util.*;
+import javax.swing.JOptionPane;
 public class FormSistema extends javax.swing.JFrame {
     
     Stack<Pallet> pilha = new Stack<>();
@@ -21,10 +23,19 @@ public class FormSistema extends javax.swing.JFrame {
         listPilha.setText("");
         for(Pallet p: pilha)
             listPilha.append(p.toString() + "\n" );
+     
+        listAux.setText("");
+        for(Pallet p: paux)
+            listAux.append(p.toString()+"\n");
+          
+        if(pilha.isEmpty())
+            lblTopo.setText("Topo: Vazio");
+        else
         lblTopo.setText("Topo:" + pilha.peek());
         
+        
     }
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -89,11 +100,16 @@ public class FormSistema extends javax.swing.JFrame {
 
         btnRemove.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnRemove.setText("Remover");
-        btnRemove.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        btnRemove.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAdd.setText("Adicionar");
-        btnAdd.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        btnAdd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -176,9 +192,9 @@ public class FormSistema extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
         Pallet p = new Pallet();
         p.setProduct(txtProduto.getText());
@@ -187,7 +203,32 @@ public class FormSistema extends javax.swing.JFrame {
         System.out.println(pilha);
         System.out.println("Topo: " + pilha.peek());
         mostra();
-    }//GEN-LAST:event_btnAddActionPerformed
+    }                                      
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        Pallet p = new Pallet();
+        if(!pilha.isEmpty()){
+            p = pilha.peek();
+            if(p.getProduct().equals(txtProduto.getText())){
+                p = pilha.pop();
+                // Testar se a quantidade é o que quero remover
+                //se for >= pop apenas - fala que removeu tudo
+                //se for < = decrementa do p.getQtd a quantidade da caix
+                // e devolve - push
+                listAux.append(p.toString());
+                JOptionPane.showMessageDialog(null, "Encontrado");
+                mostra();
+                
+            }//fim equals
+            else{
+                      JOptionPane.showMessageDialog(null, "NMovendo para auxiliar: " + p.getProduct());
+                      paux.push(pilha.pop());
+                      mostra();
+                      
+            }
+      
+        }        // TODO add your handling code here:
+    }                                         
 
     /**
      * @param args the command line arguments
@@ -224,7 +265,7 @@ public class FormSistema extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnRemove;
     private javax.swing.JLabel jLabel2;
@@ -238,5 +279,5 @@ public class FormSistema extends javax.swing.JFrame {
     private javax.swing.JTextArea listPilha;
     private javax.swing.JTextField txtProduto;
     private javax.swing.JTextField txtQtd;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
