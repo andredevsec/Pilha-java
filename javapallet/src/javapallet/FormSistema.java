@@ -1,5 +1,4 @@
 
-
 package javapallet;
 
 import java.util.*;
@@ -35,7 +34,7 @@ public class FormSistema extends javax.swing.JFrame {
         
         
     }
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -192,9 +191,9 @@ public class FormSistema extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {                                       
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         Pallet p = new Pallet();
         p.setProduct(txtProduto.getText());
@@ -203,9 +202,9 @@ public class FormSistema extends javax.swing.JFrame {
         System.out.println(pilha);
         System.out.println("Topo: " + pilha.peek());
         mostra();
-    }                                      
+    }//GEN-LAST:event_btnAddActionPerformed
 
-   private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         Pallet p = new Pallet();
         while(!pilha.isEmpty()){
             p = pilha.peek();
@@ -235,8 +234,8 @@ public class FormSistema extends javax.swing.JFrame {
         while(!paux.isEmpty()){
             pilha.push(paux.pop());
             mostra();
-        }
-   }       
+        }           
+    }//GEN-LAST:event_btnRemoveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,7 +272,7 @@ public class FormSistema extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnRemove;
     private javax.swing.JLabel jLabel2;
@@ -287,5 +286,5 @@ public class FormSistema extends javax.swing.JFrame {
     private javax.swing.JTextArea listPilha;
     private javax.swing.JTextField txtProduto;
     private javax.swing.JTextField txtQtd;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }
