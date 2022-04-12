@@ -205,30 +205,38 @@ public class FormSistema extends javax.swing.JFrame {
         mostra();
     }                                      
 
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {                                          
+   private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {                                          
         Pallet p = new Pallet();
-        if(!pilha.isEmpty()){
+        while(!pilha.isEmpty()){
             p = pilha.peek();
             if(p.getProduct().equals(txtProduto.getText())){
-                p = pilha.pop();
-                // Testar se a quantidade é o que quero remover
-                //se for >= pop apenas - fala que removeu tudo
-                //se for < = decrementa do p.getQtd a quantidade da caix
-                // e devolve - push
-                listAux.append(p.toString());
-                JOptionPane.showMessageDialog(null, "Encontrado");
-                mostra();
-                
-            }//fim equals
-            else{
-                      JOptionPane.showMessageDialog(null, "NMovendo para auxiliar: " + p.getProduct());
-                      paux.push(pilha.pop());
-                      mostra();
-                      
+                if (Integer.parseInt(txtQtd.getText())>=p.getQtd())
+                {
+                    pilha.pop ();
+                    JOptionPane.showMessageDialog(null,"Removidor com sucesso");
+                    mostra();
+                }
+                else
+                {
+                    p=pilha.pop();
+                    p.setQtd(p.getQtd() - Integer.parseInt(txtQtd.getText()));
+                    pilha.push(p);
+                    JOptionPane.showMessageDialog(null,"Quantidade removida com Sucesso");
+                    mostra();
+                }
+                break;
             }
-      
-        }        // TODO add your handling code here:
-    }                                         
+            else{
+                JOptionPane.showMessageDialog(null,"Movendo pra auxiliar: " +p.getProduct());
+                paux.push(pilha.pop());
+                mostra();
+            }
+        }
+        while(!paux.isEmpty()){
+            pilha.push(paux.pop());
+            mostra();
+        }
+   }       
 
     /**
      * @param args the command line arguments
